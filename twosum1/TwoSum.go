@@ -40,6 +40,8 @@ func main() {
 	target := 9
 	ints := twoSum1(nums, target)
 	fmt.Println(ints)
+	sum2 := twoSum2(nums, target)
+	fmt.Println(sum2)
 
 }
 
@@ -56,5 +58,19 @@ func twoSum1(nums []int, target int) []int {
 			m[num] = i
 		}
 	}
-	return []int{0, 0}
+	return []int{0}
+}
+
+func twoSum2(nums []int, target int) []int {
+
+	for i := 0; i < len(nums)-1; i++ {
+
+		for j := i + 1; j < len(nums); j++ {
+			if nums[i]+nums[j] == target {
+				return []int{i, j}
+			}
+		}
+	}
+
+	return []int{0}
 }
