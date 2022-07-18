@@ -61,61 +61,44 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	}
 	var head *ListNode = nil
 	var tail *ListNode = nil
-
+	var n1, n2 int
 	for tmpList1 != nil || tmpList2 != nil {
 
-		if tmpList1 == nil {
-			for ; tmpList2 != nil; tmpList2 = tmpList2.Next {
-				node := &ListNode{
-					Val:  tmpList2.Val,
-					Next: nil,
-				}
-				tail.Next = node
-				tail = node
-			}
-			break
+		if list1 != nil {
+			n1 = list1.Val
+		}
+		if list2 != nil {
+			n2 = list2.Val
 		}
 
-		if tmpList2 == nil {
-			for ; tmpList1 != nil; tmpList1 = tmpList1.Next {
-				node := &ListNode{
-					Val:  tmpList1.Val,
-					Next: nil,
-				}
-				tail.Next = node
-				tail = node
-			}
-			break
-		}
-		n1 := tmpList1.Val
-		n2 := tmpList2.Val
 		if n1 >= n2 {
-			node := &ListNode{
-				Val:  n2,
-				Next: nil,
-			}
-			if head == nil {
-				head = node
-				tail = node
-			} else {
-				tail.Next = node
-				tail = node
-			}
-			tmpList2 = tmpList2.Next
+			for ; n1 >= n2 && list2 != nil; list2 = list2.Next {
 
+				node := &ListNode{
+					Val:  n2,
+					Next: nil,
+				}
+				if head == nil {
+					head = node
+				} else {
+					tail.Next = node
+				}
+				tail = node
+			}
 		} else {
-			node := &ListNode{
-				Val:  n1,
-				Next: nil,
-			}
-			if head == nil {
-				head = node
+			for ; n1 < n2 && list1 != nil; list1 = list1.Next {
+				n1 = list1.Val
+				node := &ListNode{
+					Val:  n1,
+					Next: nil,
+				}
+				if head == nil {
+					head = node
+				} else {
+					tail.Next = node
+				}
 				tail = node
-			} else {
-				tail.Next = node
-				tail = node
 			}
-			tmpList1 = tmpList1.Next
 		}
 	}
 	return head
