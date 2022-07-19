@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // 插入排序
 func insertSort(arr []int) {
@@ -49,9 +51,38 @@ func insertSort2(arr []int) {
 	}
 }
 
+// 插入排序
+func insertSort3(arr []int) {
+	for i := 1; i < len(arr); i++ {
+		x := arr[i]
+		// 默认插入位置为下标：0
+		insertPosition := 0
+		// for循环找出插入位置
+		for j := i - 1; j >= 0; j-- {
+			// 找到插入位置
+			if x > arr[j] {
+				insertPosition = j + 1
+				break
+			} else {
+				arr[j+1] = arr[j]
+			}
+		}
+		// 插入数据
+		arr[insertPosition] = x
+	}
+}
+
+// Swap 交换切片中left和right下标位置的值
+func Swap(arr []int, left, right int) {
+	tmp := arr[left]
+	arr[left] = arr[right]
+	arr[right] = tmp
+}
+
 func main() {
 	arr := []int{3, 5, 7, 1, 2, 10}
-	insertSort2(arr)
+	//insertSort2(arr)
+	insertSort3(arr)
 	for _, e := range arr {
 		fmt.Printf("%d ", e)
 	}

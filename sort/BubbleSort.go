@@ -22,9 +22,30 @@ func bubbleSort(arr []int) {
 	}
 }
 
+// 冒泡排序
+func bubbleSort2(arr []int) {
+
+	for {
+		flag := true
+		for i := 0; i < len(arr)-1; i++ {
+			if arr[i] > arr[i+1] {
+				tmp := arr[i]
+				arr[i] = arr[i+1]
+				arr[i+1] = tmp
+				flag = false
+			}
+		}
+		if flag {
+			break
+		}
+
+	}
+}
+
 func main() {
 	arr := []int{3, 5, 7, 1, 2, 10}
-	bubbleSort(arr)
+	//bubbleSort(arr)
+	bubbleSort2(arr)
 	for _, e := range arr {
 		fmt.Printf("%d ", e)
 	}
